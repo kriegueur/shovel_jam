@@ -1,9 +1,6 @@
 extends Node2D
 
-enum EnemyState {
-	WAIT,
-	SHOOT,
-}
+var current_bullets = []
 
 @onready var projectile = load("res://scenes/projectile.tscn")
 
@@ -13,16 +10,13 @@ var current_shot = 0
 func _ready() -> void:
 	var player = get_tree().get_first_node_in_group("player")
 	$Timer.connect("timeout", func():
-		if $Timer.is_stopped():
-			return
-		print("shoot")
 		var dir_to_player : Vector2 = (global_position - player.global_position)
 		for i in range(3):
 			var proj = projectile.instantiate()
 			proj.startPos = $shooting_point.global_position
 			proj.dir = SHOT_DIRS[current_shot].rotated(dir_to_player.angle())
 			current_shot = (current_shot+1)%len(SHOT_DIRS)
-			add_child.call_deferred(proj)
+			add_child(proj)
 	)
 
 
@@ -34,9 +28,8 @@ func start_shooting():
 	$Timer.start()
 
 func stop_shooting():
-	print($Timer.time_left)
 	$Timer.stop()
-	var children = get_children()
+	var children = get_children(true)
 	for child in children:
 		if child is projectile:
 			child.queue_free()
