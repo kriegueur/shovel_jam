@@ -7,13 +7,17 @@ enum PlayerState {
 	MOVE
 }
 
+signal player_hit
+
 var state : PlayerState = PlayerState.WAIT
 
-const SPEED = 400
+const SPEED = 200
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$hurtbox.connect("area_entered", func(area : Area2D):
+		player_hit.emit()
+	)
 
 
 func _physics_process(delta: float) -> void:

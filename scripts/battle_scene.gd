@@ -15,6 +15,9 @@ func _ready() -> void:
 		$UI/PlayerActionsContainer/Attack.grab_focus()
 		$Player.stop_moving()
 	)
+	$Player.connect("player_hit", func():
+		print("player loses HP TODO")
+	)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

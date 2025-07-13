@@ -53,10 +53,10 @@ focus_neighbor_bottom = NodePath("../Attack")
 text = "Spell"
 
 [node name="Player" parent="." instance=ExtResource("2_pxwbd")]
-position = Vector2(221, 266)
+position = Vector2(369, 310)
 
 [node name="Ennemy" parent="." instance=ExtResource("3_1i8jf")]
-position = Vector2(933, 285)
+position = Vector2(944, 308)
 
 [node name="WorldBorders" type="StaticBody2D" parent="."]
 
@@ -79,5 +79,5 @@ offset_bottom = 40.0
 texture = ExtResource("4_svpld")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 30.0
 one_shot = true

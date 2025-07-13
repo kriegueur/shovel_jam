@@ -15,4 +15,4 @@ texture = ExtResource("1_12j10")
 position = Vector2(-68, 0)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.6
