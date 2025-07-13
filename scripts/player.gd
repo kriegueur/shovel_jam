@@ -27,3 +27,6 @@ func _physics_process(delta: float) -> void:
 
 func start_moving():
 	state = PlayerState.MOVE
+
+func stop_moving():
+	state = PlayerState.WAIT

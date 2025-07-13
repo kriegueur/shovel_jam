@@ -1,19 +1,19 @@
 extends Node2D
 
-enum GameStates {
-	CHOICE,
-	PLAYERATTACK,
-	ENEMYATTACK,
-}
-
-var state : GameStates = GameStates.CHOICE
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$UI/PlayerActionsContainer/Attack.grab_focus()
 	$UI/PlayerActionsContainer/Attack.connect("pressed",func ():
+		$Timer.start()
 		$Player.start_moving()
+		$Ennemy.start_shooting()
 		$UI.hide()
+	)
+	$Timer.connect("timeout", func():
+		$Ennemy.stop_shooting()
+		$UI.show()
+		$UI/PlayerActionsContainer/Attack.grab_focus()
+		$Player.stop_moving()
 	)
 
 
