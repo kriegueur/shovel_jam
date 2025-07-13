@@ -58,8 +58,7 @@ func take_damage(damage: int):
 
 func die():
 	stop_shooting()
-	enemy_died.emit(self)
-	
+	enemy_died.emit()
 
 func start_shooting():
 	get_tree().create_timer(time_offset).connect("timeout", func():
