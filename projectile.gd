@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name projectile
+class_name Projectile
 
 @export var SPEED = 500
 
@@ -12,8 +12,3 @@ var dir : Vector2 = Vector2.LEFT
 func _ready() -> void:
 	global_position = startPos
 	global_rotation = startRot
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	global_translate(dir * SPEED * delta)

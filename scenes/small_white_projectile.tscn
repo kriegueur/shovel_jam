@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3emetuichy0l"]
+
+[ext_resource type="Script" uid="uid://ckphqwxgw8tp2" path="res://projectile.gd" id="1_8pjjq"]
+[ext_resource type="Texture2D" uid="uid://ct4vbwak8qdtb" path="res://icon.svg" id="2_pjsc6"]
+[ext_resource type="PackedScene" uid="uid://crwj7kly1mkx2" path="res://scenes/projectile_component.tscn" id="3_pxjsh"]
+
+[node name="SmallWhiteProjectile" type="Node2D"]
+script = ExtResource("1_8pjjq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(100, 29.282, 69.613, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_pjsc6")
+
+[node name="projectile_component" parent="." instance=ExtResource("3_pxjsh")]
