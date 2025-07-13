@@ -1,6 +1,8 @@
 extends Node2D
 
 @onready var timer: Timer = $Timer
+@onready var progress_bar: ProgressBar = $ProgressBar
+
 
 @export var shooting_point : Vector2 = Vector2(-68, 0)
 @export var shot_interval : float = 1.0
@@ -9,7 +11,7 @@ extends Node2D
 @export var bullets_per_shot : int = 1
 @export var time_offset : float = 0.0
 
-@export var max_health : int = 100
+@export var max_health : float = 100.0
 var current_health : int
 @onready var health_bar : ProgressBar
 
@@ -40,10 +42,9 @@ func _ready() -> void:
 			add_child(proj)
 	)
 	current_health = max_health
-	$CanvasLayer/ProgressBar.max_value = max_health
-	$CanvasLayer/ProgressBar.value = current_health
-	$CanvasLayer/ProgressBar.min_value = 0
-	$CanvasLayer/ProgressBar.global_position = global_position + Vector2(-40, 30)
+	progress_bar.max_value = max_health
+	progress_bar.value = current_health
+	progress_bar.min_value = 0.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -51,7 +52,7 @@ func _process(delta: float) -> void:
 
 func take_damage(damage: int):
 	current_health = max(0, current_health - damage)
-	$CanvasLayer/ProgressBar.value = current_health
+	ProgressBar.value = current_health
 	health_changed.emit(current_health, max_health)
 	if current_health <= 0:
 		die()
@@ -64,7 +65,6 @@ func start_shooting():
 	get_tree().create_timer(time_offset).connect("timeout", func():
 		timer.start()
 	)
-
 
 func stop_shooting():
 	timer.stop()
