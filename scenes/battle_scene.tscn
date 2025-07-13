@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://csu8nc0640f4u"]
+[gd_scene load_steps=8 format=3 uid="uid://csu8nc0640f4u"]
 
 [ext_resource type="Script" uid="uid://dbmhajqs308a8" path="res://scripts/battle_scene.gd" id="1_8qdv8"]
 [ext_resource type="PackedScene" uid="uid://cw7ls5qlpy6og" path="res://scenes/player.tscn" id="2_pxwbd"]
-[ext_resource type="PackedScene" uid="uid://cfly61tgix7ah" path="res://scenes/ennemy.tscn" id="3_1i8jf"]
 [ext_resource type="Texture2D" uid="uid://bdaya6ok561ot" path="res://temporary_background.png" id="4_svpld"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fw8re"]
@@ -55,9 +54,6 @@ text = "Spell"
 [node name="Player" parent="." instance=ExtResource("2_pxwbd")]
 position = Vector2(369, 310)
 
-[node name="Ennemy" parent="." instance=ExtResource("3_1i8jf")]
-position = Vector2(944, 308)
-
 [node name="WorldBorders" type="StaticBody2D" parent="."]
 
 [node name="UpLimit" type="CollisionShape2D" parent="WorldBorders"]
@@ -71,6 +67,17 @@ shape = SubResource("WorldBoundaryShape2D_5g7vw")
 
 [node name="RightLimit" type="CollisionShape2D" parent="WorldBorders"]
 shape = SubResource("WorldBoundaryShape2D_5joda")
+
+[node name="Spawnpoints" type="Node2D" parent="."]
+
+[node name="Bottom" type="Node2D" parent="Spawnpoints"]
+position = Vector2(940, 500)
+
+[node name="Middle" type="Node2D" parent="Spawnpoints"]
+position = Vector2(940, 320)
+
+[node name="Top" type="Node2D" parent="Spawnpoints"]
+position = Vector2(940, 140)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -10

@@ -14,8 +14,8 @@ var state : PlayerState = PlayerState.WAIT
 
 const SPEED = 200
 const DASH_SPEED = 600
-const DASH_DURATION = 0.2
-const DASH_COOLDOWN = 2.0
+const DASH_DURATION = 0.3
+const DASH_COOLDOWN = 1.5
 
 var dash_direction : Vector2 = Vector2.ZERO
 var dash_timer : float = 0.0

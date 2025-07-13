@@ -9,7 +9,9 @@ script = ExtResource("1_8pjjq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(100, 29.282, 69.613, 1)
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_pjsc6")
 
 [node name="projectile_component" parent="." instance=ExtResource("3_pxjsh")]
+
+[editable path="projectile_component"]

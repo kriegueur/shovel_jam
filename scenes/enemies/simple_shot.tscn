@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxocngsqbk7v5"]
+
+[ext_resource type="Script" uid="uid://b6bp1v5itam7v" path="res://scripts/enemy.gd" id="1_w1se1"]
+[ext_resource type="PackedScene" uid="uid://bywnmjxsuvyhj" path="res://scenes/enemy_component.tscn" id="2_cs6y5"]
+[ext_resource type="PackedScene" uid="uid://c3emetuichy0l" path="res://scenes/small_white_projectile.tscn" id="3_3pc08"]
+[ext_resource type="Texture2D" uid="uid://ct4vbwak8qdtb" path="res://icon.svg" id="4_jw10e"]
+
+[node name="Enemy2" type="Node2D"]
+script = ExtResource("1_w1se1")
+
+[node name="enemy_component" parent="." instance=ExtResource("2_cs6y5")]
+shot_interval = 0.8
+projectile = ExtResource("3_3pc08")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(2.762, 100, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_jw10e")
