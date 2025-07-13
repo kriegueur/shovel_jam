@@ -7,6 +7,7 @@ extends Node2D
 @export var projectile : PackedScene
 @export var shoot_towards_player : bool = true
 @export var bullets_per_shot : int = 1
+@export var time_offset : float = 0.0
 
 var SHOT_DIRS : Array[Vector2] = [Vector2.LEFT]
 var current_shot = 0
@@ -37,7 +38,10 @@ func _process(delta: float) -> void:
 	pass
 
 func start_shooting():
-	timer.start()
+	get_tree().create_timer(time_offset).connect("timeout", func():
+		timer.start()
+	)
+
 
 func stop_shooting():
 	timer.stop()
