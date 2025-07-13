@@ -1,8 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://bywnmjxsuvyhj"]
+[gd_scene load_steps=4 format=3 uid="uid://bywnmjxsuvyhj"]
 
 [ext_resource type="Script" uid="uid://88au741dl3ce" path="res://scripts/enemy_component.gd" id="1_wmfil"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wmfil"]
+bg_color = Color(0.2, 0.2, 0.2, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74p7v"]
+bg_color = Color(0.8, 0.2, 2, 0.9)
 
 [node name="enemy_component" type="Node2D"]
 script = ExtResource("1_wmfil")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = -40.0
+offset_top = 30.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_wmfil")
+theme_override_styles/fill = SubResource("StyleBoxFlat_74p7v")
+value = 100.0
+show_percentage = false
