@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name projectile
+class_name Projectile
 
 @export var SPEED = 500
 
