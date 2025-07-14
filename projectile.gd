@@ -12,3 +12,6 @@ var dir : Vector2 = Vector2.LEFT
 func _ready() -> void:
 	global_position = startPos
 	global_rotation = startRot
+
+func reverse_dir():
+	return dir * -1

@@ -53,12 +53,15 @@ func handle_hit(area: Area2D):
 
 func parry_projectile(projectile_area: Area2D):
 	var direction_to_sender
-	var projectile_parent = projectile_area.get_parent()
-	if projectile_parent and projectile_area.has_method("get_sender_position"):
-		var sender_position = projectile_parent.get_sender_position()
+	var projectile_parent = projectile_area.get_parent().get_parent().get_parent()
+	var projectile_component = projectile_area.get_parent().get_parent()
+	print(projectile_parent)
+	if projectile_parent:
+		var sender_position = projectile_parent.global_position
 		direction_to_sender = (sender_position - global_position).normalized()
 	else:
 		direction_to_sender = (last_enemy_position - global_position).normalized()
+	projectile_component.dir = direction_to_sender
 	projectile_parried.emit(projectile_area, direction_to_sender)
 
 func start_parry():
@@ -238,6 +241,3 @@ func stop_moving():
 	state = PlayerState.WAIT
 	reset_dash()
 	reset_parry()
-
-func set_last_enemy_position(pos: Vector2):
-	last_enemy_position = pos
