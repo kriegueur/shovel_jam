@@ -1,4 +1,5 @@
 extends Node2D
+class_name EnemyComponent
 
 @onready var timer: Timer = $Timer
 @onready var progress_bar: ProgressBar = $ProgressBar
@@ -52,7 +53,7 @@ func _process(delta: float) -> void:
 
 func take_damage(damage: int):
 	current_health = max(0, current_health - damage)
-	ProgressBar.value = current_health
+	progress_bar.value = current_health
 	health_changed.emit(current_health, max_health)
 	if current_health <= 0:
 		die()
