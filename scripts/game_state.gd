@@ -5,6 +5,7 @@ var current_world : int = STARTING_WORLD
 
 const STARTING_CASH : int = 0
 var cash : int = STARTING_CASH
+const INTEREST_RATE : float = 1.2
 
 const CASHPRIZES : Array[int] = [5]
 
@@ -26,4 +27,8 @@ func cash_reward():
 	else:
 		world_index = current_world - 1
 	var gain = CASHPRIZES[world_index]
+	var interest_gain : int = ceil(cash * INTEREST_RATE) - cash
+	print(gain)
+	print(interest_gain)
 	cash += gain
+	cash += interest_gain
