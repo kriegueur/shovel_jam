@@ -127,4 +127,5 @@ func enemy_died(enemy : Enemy):
 		battle_over()
 
 func battle_over():
-	get_tree().reload_current_scene()
+	GameState.cash_reward()
+	get_tree().change_scene_to_file("res://scenes/shop.tscn")
