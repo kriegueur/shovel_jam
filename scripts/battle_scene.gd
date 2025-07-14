@@ -30,8 +30,11 @@ func _ready() -> void:
 	start_action_choice()
 	attack_button.connect("pressed", start_target_choice)
 	timer.connect("timeout", stop_enemy_turn)
-	player.connect("player_hit", func():
-		print("player loses HP TODO")
+	player.connect("player_hit", func(reduction: float):
+		print("player loses HP TODO ", reduction, "reduction")
+	)
+	player.connect("projectile_parried", func(projectile, direction_to_sender):
+		print("PARRYYYYYYYYYYYYY")
 	)
 
 func _input(event: InputEvent) -> void:
@@ -119,6 +122,7 @@ func enemy_died(enemy : Enemy):
 	var enemy_index = enemies.find(enemy)
 	enemies.remove_at(enemy_index)
 	enemy.queue_free()
+	current_target = 0
 	if enemies.is_empty():
 		battle_over()
 
