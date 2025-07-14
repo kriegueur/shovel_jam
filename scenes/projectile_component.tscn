@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://crwj7kly1mkx2"]
 
-[ext_resource type="Script" uid="uid://x3bh03yvr4r7" path="res://projectile_component.gd" id="1_igg0b"]
+[ext_resource type="Script" uid="uid://x3bh03yvr4r7" path="res://scripts/projectile_component.gd" id="1_igg0b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mtgpy"]
 size = Vector2(10, 10)
