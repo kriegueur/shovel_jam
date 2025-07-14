@@ -27,7 +27,7 @@ func _ready() -> void:
 	timer.wait_time = shot_interval
 	timer.one_shot = false
 	var player
-	var shot_point = shooting_point + global_position
+	var shot_point : Vector2 = shooting_point + global_position
 	if shoot_towards_player:
 		player = get_tree().get_first_node_in_group("player")
 	timer.connect("timeout", func():
@@ -36,7 +36,7 @@ func _ready() -> void:
 			var dir_to_player = (global_position - player.global_position)
 			angle_to_player = dir_to_player.angle()
 		for i in range(bullets_per_shot):
-			var proj = projectile.instantiate()
+			var proj : Projectile = projectile.instantiate()
 			proj.startPos = shot_point
 			proj.dir = SHOT_DIRS[current_shot].rotated(angle_to_player)
 			current_shot = (current_shot+1)%len(SHOT_DIRS)
