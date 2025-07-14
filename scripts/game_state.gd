@@ -1,6 +1,7 @@
 extends Node
 
 var current_world : int = 1
+var player_damage = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
