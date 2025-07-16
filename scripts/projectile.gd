@@ -2,8 +2,6 @@ extends Node2D
 
 class_name Projectile
 
-@export var SPEED = 500
-
 var startPos : Vector2
 var startRot : float
 var dir : Vector2 = Vector2.LEFT

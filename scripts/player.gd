@@ -47,9 +47,23 @@ func handle_hit(area: Area2D):
 		PlayerState.PARRYING:
 			parry_projectile(area)
 		PlayerState.SHIELD:
-			player_hit.emit(SHIELD_DAMAGE_REDUCTION)
+			var projectile_component = area.get_parent() as ProjectileComponent
+			var damage : int
+			if projectile_component != null:
+				damage = projectile_component.DAMAGE
+			else:
+				damage = 20
+				print("WARNING projectile did not have projectile component")
+			player_hit.emit(round(damage * SHIELD_DAMAGE_REDUCTION * GameState.shield_efficiency_multiplier))
 		_:
-			player_hit.emit(0)
+			var projectile_component = area.get_parent() as ProjectileComponent
+			var damage : int
+			if projectile_component != null:
+				damage = projectile_component.DAMAGE
+			else:
+				damage = 20
+				print("WARNING projectile did not have projectile component")
+			player_hit.emit(damage)
 
 func parry_projectile(projectile_area: Area2D):
 	var projectile_component : ProjectileComponent = projectile_area.get_parent()
@@ -89,8 +103,8 @@ func dash_setup():
 
 func parry_setup():
 	$ParryCooldown.min_value = 0
-	$ParryCooldown.max_value = PARRY_COOLDOWN
-	$ParryCooldown.value = PARRY_COOLDOWN
+	$ParryCooldown.max_value = PARRY_COOLDOWN * GameState.parry_cooldown_multiplier
+	$ParryCooldown.value = PARRY_COOLDOWN * GameState.parry_cooldown_multiplier
 
 func show_dash_progressbar(delta: float) -> void:
 	if not can_dash:
@@ -116,7 +130,7 @@ func show_parry_progressbar(delta: float) -> void:
 
 func movement_handler(delta: float) -> void:
 	var input_vector = Input.get_vector("left","right","up","down")
-	velocity = input_vector * SPEED
+	velocity = input_vector * SPEED * GameState.speed_multiplier
 	if Input.is_action_just_pressed("dash") and can_dash and input_vector != Vector2.ZERO:
 		start_dash(input_vector.normalized())
 	if Input.is_action_just_pressed("parry&shield") and can_parry:
@@ -137,11 +151,11 @@ func shielding_handler(delta: float):
 
 func dashing_handler(delta: float):
 	dash_timer += delta
-	if dash_timer >= DASH_DURATION:
+	if dash_timer >= DASH_DURATION * GameState.dash_duration_multiplier:
 		stop_dash()
 		return
 	
-	var dash_progress = dash_timer / DASH_DURATION
+	var dash_progress = dash_timer / (DASH_DURATION * GameState.dash_duration_multiplier)
 	var dash_intensity = 1.0 - (dash_progress * dash_progress)
 	velocity = dash_direction * DASH_SPEED * dash_intensity
 	move_and_slide()
@@ -210,7 +224,7 @@ func _physics_process(delta: float) -> void:
 			pass
 
 func reset_dash():
-	$DashCooldownBar.value = DASH_COOLDOWN
+	$DashCooldownBar.value = DASH_COOLDOWN * GameState.dash_cooldown_multiplier
 	$DashCooldownBar.visible = false
 	dash_direction = Vector2.ZERO
 	dash_timer = 0.0

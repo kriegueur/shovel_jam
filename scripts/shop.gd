@@ -15,7 +15,8 @@ func _ready() -> void:
 	heal_button.text = "Heal : " + str(HEAL_PRICE)
 	heal_button.connect("pressed", func():
 		if pay(HEAL_PRICE):
-			print("TODO player healing")
+			GameState.player_hp = GameState.max_hp
+			GameState.player_mana = GameState.max_mana
 	)
 
 

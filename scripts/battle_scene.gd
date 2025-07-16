@@ -19,10 +19,12 @@ var enemies : Array[Enemy] = []
 var current_target = 0
 
 @onready var cursor: TextureRect = $UI/Cursor
-@onready var player_actions: VBoxContainer = $UI/PlayerActionsContainer
-@onready var attack_button: Button = $UI/PlayerActionsContainer/Attack
+@onready var player_actions: VBoxContainer = $UI/HBoxContainer/PlayerActionsContainer
+@onready var attack_button: Button = $UI/HBoxContainer/PlayerActionsContainer/Attack
 @onready var timer: Timer = $Timer
 @onready var player: Player = $Player
+@onready var hp_bar: ProgressBar = $UI/HBoxContainer/VBoxContainer/HP
+@onready var mana_bar: ProgressBar = $UI/HBoxContainer/VBoxContainer/Mana
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,12 +32,21 @@ func _ready() -> void:
 	start_action_choice()
 	attack_button.connect("pressed", start_target_choice)
 	timer.connect("timeout", stop_enemy_turn)
-	player.connect("player_hit", func(reduction: float):
-		print("player loses HP TODO ", reduction, "reduction")
+	player.connect("player_hit", func(damage : int):
+		GameState.player_hp -= damage
+		hp_bar.value = GameState.player_hp
+		if GameState.player_hp <= 0:
+			print("TODO death")
 	)
 	player.connect("projectile_parried", func(projectile, direction_to_sender):
 		print("PARRYYYYYYYYYYYYY")
 	)
+	
+	# UI
+	hp_bar.max_value = GameState.max_hp
+	hp_bar.value = GameState.player_hp
+	mana_bar.max_value = GameState.max_mana
+	mana_bar.value = GameState.player_mana
 
 func _input(event: InputEvent) -> void:
 	match state:
@@ -90,7 +101,8 @@ func start_enemy_turn():
 	player.start_moving()
 	for enemy in enemies:
 		enemy.start_shooting()
-	$UI.hide()
+	player_actions.hide()
+	cursor.hide()
 
 func start_target_choice():
 	state = BattleState.TARGET_CHOICE
@@ -104,7 +116,7 @@ func stop_enemy_turn():
 	for enemy in enemies:
 			enemy.stop_shooting()
 	player.stop_moving()
-	$UI.show()
+	player_actions.show()
 	start_action_choice()
 
 func start_action_choice():

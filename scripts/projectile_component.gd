@@ -2,6 +2,8 @@ extends Node2D
 class_name ProjectileComponent
 
 @export var SPEED = 500
+@export var DAMAGE = 20
+
 @onready var parent = get_parent()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
