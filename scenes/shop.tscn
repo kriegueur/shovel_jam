@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cb80vcjylyho6"]
+[gd_scene load_steps=3 format=3 uid="uid://cb80vcjylyho6"]
 
 [ext_resource type="Script" uid="uid://dda42yycfwk2j" path="res://scripts/shop.gd" id="1_lx5au"]
+[ext_resource type="PackedScene" uid="uid://btl7xrqixw8od" path="res://scenes/item_hoverable.tscn" id="2_xfvoa"]
 
 [node name="Shop" type="Control"]
 layout_mode = 3
@@ -49,3 +50,19 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Heal : 1"
+
+[node name="Items" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ItemHoverable" parent="Items" instance=ExtResource("2_xfvoa")]
+layout_mode = 2
