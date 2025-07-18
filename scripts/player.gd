@@ -202,7 +202,7 @@ func create_dash_effect():
 	
 	particles.emitting = true
 	particles.amount = 50
-	particles.lifetime = 0.5
+	particles.lifetime = DASH_DURATION
 	particles.emission_shape = CPUParticles2D.EMISSION_SHAPE_POINT
 	
 	var angle_spread = PI / 6
@@ -218,16 +218,8 @@ func create_dash_effect():
 	particles.gravity = Vector2(0, 98)
 	particles.linear_accel_min = -50.0
 	particles.linear_accel_max = -30.0
-		
-	var timer = Timer.new()
-	add_child(timer)
-	timer.wait_time = 0.5
-	timer.one_shot = true
-	timer.timeout.connect(func(): 
-		particles.queue_free()
-		timer.queue_free()
-	)
-	timer.start()
+	
+	particles.one_shot = true
 
 func start_recovery():
 	if state == PlayerState.RECOVERY or state == PlayerState.SHIELD:
