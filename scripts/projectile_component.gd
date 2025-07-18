@@ -23,36 +23,26 @@ func create_explosion_gradient() -> Gradient:
 	return gradient
 
 func destroy_projectile(hit_position: Vector2):
-	var parent_projectile = get_parent()
 	var particles = CPUParticles2D.new()
-	parent_projectile.cleanse()
+	parent.cleanse()
 		
-	parent_projectile.add_child(particles)
+	parent.add_child(particles)
 	particles.global_position = hit_position
 	
 	particles.emitting = true
-	particles.amount = 60
-	particles.lifetime = 0.8
+	particles.amount = 30
+	particles.lifetime = 0.5
 	particles.emission_shape = CPUParticles2D.EMISSION_SHAPE_SPHERE
-	particles.emission_sphere_radius = 2.0
+	particles.emission_sphere_radius = 5.0
 	particles.direction = Vector2(1, 0)
 	particles.spread = 360.0
-	particles.initial_velocity_min = 80.0
+	particles.initial_velocity_min = 180.0
 	particles.initial_velocity_max = 200.0
-	particles.scale_amount_min = 0.8
-	particles.scale_amount_max = 2.0
+	particles.scale_amount_min = 2.8
+	particles.scale_amount_max = 4.0
 	particles.color = Color(1.0, 0.6, 0.1, 1.0)
-	particles.gravity = Vector2(0, 50)
-	particles.linear_accel_min = -100.0
-	particles.linear_accel_max = -50.0
+	particles.gravity = Vector2(0, 0)
+	particles.linear_accel_min = -10.0
+	particles.linear_accel_max = -5.0
 	particles.color_ramp = create_explosion_gradient()
-	
-	var timer = Timer.new()
-	get_parent().add_child(timer)
-	timer.wait_time = 0.3
-	timer.one_shot = true
-	timer.timeout.connect(func(): 
-		particles.queue_free()
-		timer.queue_free()
-	)
-	timer.start()
+	particles.one_shot = true
