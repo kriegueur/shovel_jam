@@ -14,4 +14,7 @@ texture = ExtResource("2_pjsc6")
 
 [node name="projectile_component" parent="." instance=ExtResource("3_pxjsh")]
 
+[node name="CPUParticles2D" parent="projectile_component" index="1"]
+gravity = Vector2(0, 98)
+
 [editable path="projectile_component"]

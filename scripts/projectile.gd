@@ -11,5 +11,6 @@ func _ready() -> void:
 	global_position = startPos
 	global_rotation = startRot
 
-func reverse_dir():
-	return dir * -1
+func cleanse() -> void:
+	for i in range(0, get_child_count()):
+		get_child(i).queue_free()

@@ -7,7 +7,8 @@ enum PlayerState {
 	MOVE,
 	DASHING,
 	PARRYING,
-	SHIELD
+	SHIELD,
+	RECOVERY
 }
 
 signal player_hit(percent: float)
@@ -16,6 +17,7 @@ signal projectile_parried(projectile, direction_to_sender)
 var state : PlayerState = PlayerState.WAIT
 
 const SPEED = 200
+const RECOVERY_SPEED = 100
 const DASH_SPEED = 600
 const DASH_DURATION = 0.3
 const DASH_COOLDOWN = 1.5
@@ -23,6 +25,9 @@ const DASH_COOLDOWN = 1.5
 const PARRY_FRAME = 3
 const SHIELD_DAMAGE_REDUCTION = 0.2
 const PARRY_COOLDOWN = 2.0
+
+const RECOVERY_FRAMES = 60
+const RECOVERY_BLINK_FRAMES = 8
 
 var dash_direction : Vector2 = Vector2.ZERO
 var dash_timer : float = 0.0
@@ -34,6 +39,10 @@ var parry_cooldown_timer : float = 0.0
 var can_parry: bool = true
 var last_enemy_position: Vector2
 
+var recovery_frames_remaining = 0
+var recovery_blink_counter = 0
+var is_invulnerable: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$hurtbox.connect("area_entered", func(area : Area2D):
@@ -43,27 +52,38 @@ func _ready() -> void:
 	parry_setup()
 
 func handle_hit(area: Area2D):
+	if is_invulnerable and state != PlayerState.PARRYING:
+		return
+		
+	var projectile_component = area.get_parent() as ProjectileComponent
+	var damage : int
+	
 	match state:
 		PlayerState.PARRYING:
 			parry_projectile(area)
 		PlayerState.SHIELD:
-			var projectile_component = area.get_parent() as ProjectileComponent
-			var damage : int
 			if projectile_component != null:
 				damage = projectile_component.DAMAGE
 			else:
 				damage = 20
 				print("WARNING projectile did not have projectile component")
 			player_hit.emit(round(damage * SHIELD_DAMAGE_REDUCTION * GameState.shield_efficiency_multiplier))
+			start_recovery()
+			destroy_projectile(projectile_component)
 		_:
-			var projectile_component = area.get_parent() as ProjectileComponent
-			var damage : int
 			if projectile_component != null:
 				damage = projectile_component.DAMAGE
 			else:
 				damage = 20
 				print("WARNING projectile did not have projectile component")
 			player_hit.emit(damage)
+			start_recovery()
+			destroy_projectile(projectile_component)
+
+func destroy_projectile(projectile_node: ProjectileComponent):
+	if projectile_node != null and is_instance_valid(projectile_node):
+		projectile_node.destroy_projectile(projectile_node.global_position)
+
 
 func parry_projectile(projectile_area: Area2D):
 	var projectile_component : ProjectileComponent = projectile_area.get_parent()
@@ -161,6 +181,8 @@ func dashing_handler(delta: float):
 	move_and_slide()
 
 func start_dash(direction: Vector2):
+	if (state == PlayerState.RECOVERY):
+		stop_recovery()
 	state = PlayerState.DASHING
 	dash_direction = direction
 	dash_timer = 0.0
@@ -207,6 +229,49 @@ func create_dash_effect():
 	)
 	timer.start()
 
+func start_recovery():
+	if state == PlayerState.RECOVERY or state == PlayerState.SHIELD:
+		return
+	
+	state = PlayerState.RECOVERY
+	recovery_frames_remaining = RECOVERY_FRAMES
+	recovery_blink_counter = RECOVERY_BLINK_FRAMES
+	is_invulnerable = true
+	
+func update_recovery_state():
+	recovery_blink_counter += 1
+	recovery_frames_remaining -= 1
+	if recovery_blink_counter >= RECOVERY_BLINK_FRAMES:
+		recovery_blink_counter = 0
+		modulate.a = 1.0 - modulate.a
+	if recovery_frames_remaining <= 0:
+		stop_recovery()
+
+func stop_recovery():
+	state = PlayerState.MOVE
+	is_invulnerable = false
+	recovery_blink_counter = 0
+	recovery_frames_remaining = 0
+	modulate.a = 1.0
+
+func recovery_handler(delta: float):
+	update_recovery_state()
+	
+	var input_vector = Input.get_vector("left","right","up","down")
+	velocity = input_vector * RECOVERY_SPEED * GameState.speed_multiplier * 0.7
+	
+	if Input.is_action_just_pressed("dash") and can_dash and input_vector != Vector2.ZERO:
+		stop_recovery()
+		start_dash(input_vector.normalized())
+		return
+		
+	if Input.is_action_just_pressed("parry&shield") and can_parry:
+		stop_recovery()
+		start_parry()
+		return
+		
+	move_and_slide()
+
 func _physics_process(delta: float) -> void:
 	show_dash_progressbar(delta)
 	show_parry_progressbar(delta)
@@ -220,6 +285,8 @@ func _physics_process(delta: float) -> void:
 			parrying_handler(delta)
 		PlayerState.SHIELD:
 			shielding_handler(delta)
+		PlayerState.RECOVERY:
+			recovery_handler(delta)
 		_:
 			pass
 
@@ -246,3 +313,4 @@ func stop_moving():
 	state = PlayerState.WAIT
 	reset_dash()
 	reset_parry()
+	stop_recovery()
