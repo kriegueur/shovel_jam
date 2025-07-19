@@ -11,4 +11,5 @@ texture = ExtResource("4_5ummy")
 name = "Wood Sword"
 description = "+10 attack"
 effects = Array[ExtResource("1_ugdqy")]([ExtResource("2_mos7q")])
+price = 3
 metadata/_custom_type_script = "uid://i870gsin0pmc"

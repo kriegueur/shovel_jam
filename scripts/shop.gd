@@ -18,6 +18,9 @@ func _ready() -> void:
 			GameState.player_hp = GameState.max_hp
 			GameState.player_mana = GameState.max_mana
 	)
+	GameState.connect("cash_changed", func(cash : int):
+		balance_label.text = "Balance : " + str(cash)
+	)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,6 +31,6 @@ func pay(value : int) -> bool:
 	if GameState.cash < value:
 		return false
 	else:
+		GameState.pay(value)
 		GameState.cash -= value
-		balance_label.text = "Balance : " + str(GameState.cash)
 		return true

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cb80vcjylyho6"]
+[gd_scene load_steps=4 format=3 uid="uid://cb80vcjylyho6"]
 
 [ext_resource type="Script" uid="uid://dda42yycfwk2j" path="res://scripts/shop.gd" id="1_lx5au"]
-[ext_resource type="PackedScene" uid="uid://btl7xrqixw8od" path="res://scenes/item_hoverable.tscn" id="2_xfvoa"]
+[ext_resource type="PackedScene" uid="uid://dxcackqk0kr52" path="res://scenes/buyable_item.tscn" id="2_1l46r"]
+[ext_resource type="Resource" uid="uid://db0fl4j10d26k" path="res://Resources/Items/wood_sword.tres" id="3_032fp"]
 
 [node name="Shop" type="Control"]
 layout_mode = 3
@@ -64,5 +65,14 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="ItemHoverable" parent="Items" instance=ExtResource("2_xfvoa")]
+[node name="BuyableItem" parent="Items" instance=ExtResource("2_1l46r")]
 layout_mode = 2
+item_resource = ExtResource("3_032fp")
+
+[node name="BuyableItem2" parent="Items" instance=ExtResource("2_1l46r")]
+layout_mode = 2
+item_resource = ExtResource("3_032fp")
+
+[node name="BuyableItem3" parent="Items" instance=ExtResource("2_1l46r")]
+layout_mode = 2
+item_resource = ExtResource("3_032fp")
