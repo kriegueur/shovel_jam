@@ -302,7 +302,7 @@ func start_moving():
 	state = PlayerState.MOVE
 
 func stop_moving():
-	state = PlayerState.WAIT
 	reset_dash()
 	reset_parry()
 	stop_recovery()
+	state = PlayerState.WAIT

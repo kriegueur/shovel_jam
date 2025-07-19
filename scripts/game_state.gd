@@ -6,7 +6,7 @@ signal inventory_changed # True if adding to inventory
 const STARTING_WORLD : int = 1
 var current_world : int = STARTING_WORLD
 
-const STARTING_CASH : int = 100
+const STARTING_CASH : int = 0
 var cash : int = STARTING_CASH
 const INTEREST_RATE : float = 1.2
 
