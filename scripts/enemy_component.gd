@@ -73,7 +73,7 @@ func handle_hit(area: Area2D):
 		else:
 			damage = 20
 			print("WARNING projectile did not have projectile component")
-	take_damage(damage * 0.5)
+	take_damage(damage * 2)
 	start_hit_blink()
 	projectile_component.destroy_projectile(area.global_position)
 	

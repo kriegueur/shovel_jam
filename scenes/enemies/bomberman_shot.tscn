@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cahi618tbdevj"]
+
+[ext_resource type="Script" uid="uid://b6bp1v5itam7v" path="res://scripts/enemy.gd" id="1_jyywb"]
+[ext_resource type="PackedScene" uid="uid://bywnmjxsuvyhj" path="res://scenes/enemy_component.tscn" id="1_rukpi"]
+[ext_resource type="Texture2D" uid="uid://ct4vbwak8qdtb" path="res://icon.svg" id="3_cxsyd"]
+[ext_resource type="PackedScene" uid="uid://ckmwvrna0t0xj" path="res://scenes/projectile/mortar_projectile.tscn" id="3_rukpi"]
+
+[node name="BombermanShot" type="Node2D"]
+script = ExtResource("1_jyywb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.2, 0.9, 0.2, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_cxsyd")
+
+[node name="enemy_component" parent="." instance=ExtResource("1_rukpi")]
+projectile = ExtResource("3_rukpi")
+shoot_towards_player = false
+
+[editable path="enemy_component"]
