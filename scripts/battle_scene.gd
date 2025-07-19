@@ -133,7 +133,8 @@ func _set_cursor_position():
 func enemy_died(enemy : Enemy):
 	var enemy_index = enemies.find(enemy)
 	enemies.remove_at(enemy_index)
-	enemy.queue_free()
+	enemy.delete_sprite()
+	enemy.get_component().play_death_particles()
 	current_target = 0
 	if enemies.is_empty():
 		battle_over()
