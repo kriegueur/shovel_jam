@@ -1,5 +1,7 @@
 extends Node
 
+signal cash_changed
+
 const STARTING_WORLD : int = 1
 var current_world : int = STARTING_WORLD
 
@@ -33,6 +35,9 @@ var mana_addon : int = 0
 var max_mana : int = BASE_MANA + mana_addon
 var player_mana : int = max_mana
 
+var inventory : Array[Item] = []
+const INVENTORY_SIZE = 8
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -54,3 +59,39 @@ func cash_reward():
 	print(interest_gain)
 	cash += gain
 	cash += interest_gain
+
+func can_purchase(item : Item) -> bool:
+	return (
+		cash >= item.price and
+		len(inventory) < 8
+	)
+
+func add_item(item : Item):
+	inventory.append(item)
+	for itemeffect : ItemEffect in item.effects:
+		match itemeffect.type:
+			ItemEffect.EffectType.ATTACK:
+				damage_addon += round(itemeffect.value)
+				player_damage = BASE_DAMAGE + damage_addon
+			ItemEffect.EffectType.MAXHP:
+				hp_addon += round(itemeffect.value)
+				max_hp = BASE_HP + hp_addon
+				player_hp += round(itemeffect.value)
+			ItemEffect.EffectType.MAXMANA:
+				mana_addon += round(itemeffect.value)
+				max_mana = BASE_MANA + mana_addon
+				player_mana += round(itemeffect.value)
+			ItemEffect.EffectType.SPEED:
+				speed_multiplier += itemeffect.value
+			ItemEffect.EffectType.DASHCOOLDOWN:
+				dash_cooldown_multiplier += itemeffect.value
+			ItemEffect.EffectType.DASHDURATION:
+				dash_duration_multiplier += itemeffect.value
+			ItemEffect.EffectType.SHIELD:
+				shield_efficiency_multiplier += itemeffect.value
+			ItemEffect.EffectType.PARRYCOOLDOWN:
+				parry_cooldown_multiplier += itemeffect.value
+
+func pay(price : int):
+	cash -= price
+	cash_changed.emit(cash)

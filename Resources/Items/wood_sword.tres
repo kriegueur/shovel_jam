@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://db0fl4j10d26k"]
+
+[ext_resource type="Script" uid="uid://fevnv5su24i4" path="res://scripts/item_effect.gd" id="1_ugdqy"]
+[ext_resource type="Resource" uid="uid://c4wugvp28n4nm" path="res://Resources/ItemEffects/attack_10.tres" id="2_mos7q"]
+[ext_resource type="Script" uid="uid://i870gsin0pmc" path="res://scripts/Item.gd" id="2_siniu"]
+[ext_resource type="Texture2D" uid="uid://ct4vbwak8qdtb" path="res://icon.svg" id="4_5ummy"]
+
+[resource]
+script = ExtResource("2_siniu")
+texture = ExtResource("4_5ummy")
+name = "Wood Sword"
+description = "+10 attack"
+effects = Array[ExtResource("1_ugdqy")]([ExtResource("2_mos7q")])
+price = 3
+metadata/_custom_type_script = "uid://i870gsin0pmc"
