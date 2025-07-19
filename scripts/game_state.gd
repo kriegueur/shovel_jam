@@ -1,11 +1,12 @@
 extends Node
 
 signal cash_changed
+signal inventory_changed # True if adding to inventory
 
 const STARTING_WORLD : int = 1
 var current_world : int = STARTING_WORLD
 
-const STARTING_CASH : int = 0
+const STARTING_CASH : int = 100
 var cash : int = STARTING_CASH
 const INTEREST_RATE : float = 1.2
 
@@ -68,6 +69,7 @@ func can_purchase(item : Item) -> bool:
 
 func add_item(item : Item):
 	inventory.append(item)
+	inventory_changed.emit(true, len(inventory) - 1)
 	for itemeffect : ItemEffect in item.effects:
 		match itemeffect.type:
 			ItemEffect.EffectType.ATTACK:
@@ -94,4 +96,10 @@ func add_item(item : Item):
 
 func pay(price : int):
 	cash -= price
+	cash_changed.emit(cash)
+
+func remove_item(index : int):
+	var item : Item = inventory.pop_at(index)
+	cash += item.price / 2
+	inventory_changed.emit(false, index)
 	cash_changed.emit(cash)
