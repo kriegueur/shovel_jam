@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://btl7xrqixw8od"]
+[gd_scene load_steps=4 format=3 uid="uid://btl7xrqixw8od"]
 
 [ext_resource type="Script" uid="uid://boxf6n35st4al" path="res://scripts/item_hoverable.gd" id="1_qko22"]
 [ext_resource type="Resource" uid="uid://db0fl4j10d26k" path="res://Resources/Items/wood_sword.tres" id="2_3i776"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3i776"]
+bg_color = Color(0.977937, 0.977937, 0.977937, 1)
 
 [node name="ItemHoverable" type="Control"]
 layout_mode = 3
@@ -15,13 +18,22 @@ layout_mode = 1
 offset_right = 50.0
 offset_bottom = 50.0
 
-[node name="InfoDisplay" type="VBoxContainer" parent="."]
-layout_mode = 1
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 2
+offset_top = 54.0
 offset_right = 40.0
-offset_bottom = 50.0
+offset_bottom = 54.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3i776")
 
-[node name="Name" type="Label" parent="InfoDisplay"]
+[node name="InfoDisplay" type="VBoxContainer" parent="PanelContainer"]
+z_index = 1
 layout_mode = 2
 
-[node name="Description" type="Label" parent="InfoDisplay"]
+[node name="Name" type="Label" parent="PanelContainer/InfoDisplay"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="Description" type="Label" parent="PanelContainer/InfoDisplay"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)

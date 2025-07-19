@@ -3,9 +3,9 @@ extends Control
 @export var item_resource : Item
 
 @onready var icon_display: TextureRect = $IconDisplay
-@onready var info_display: VBoxContainer = $InfoDisplay
-@onready var name_indicator: Label = $InfoDisplay/Name
-@onready var description: Label = $InfoDisplay/Description
+@onready var info_display: PanelContainer = $PanelContainer
+@onready var name_indicator: Label = $PanelContainer/InfoDisplay/Name
+@onready var description: Label = $PanelContainer/InfoDisplay/Description
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
