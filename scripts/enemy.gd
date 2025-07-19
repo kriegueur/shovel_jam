@@ -20,5 +20,6 @@ func get_component() -> EnemyComponent:
 func get_sprite() -> Sprite2D:
 	return $Sprite2D
 
-func delete_sprite() -> void:
+func delete_visuals() -> void:
 	$Sprite2D.queue_free()
+	$enemy_component.cleanse()

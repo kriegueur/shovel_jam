@@ -135,3 +135,7 @@ func set_shot_dirs(dirs: Array[Vector2]):
 #Generic function for taking damage ?
 func damage(damage: int):
 	take_damage(damage)
+
+func cleanse() -> void:
+	for i in range(0, get_child_count()):
+		get_child(i).queue_free()
