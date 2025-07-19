@@ -8,7 +8,7 @@ metadata/_snap_count = 3
 
 [node name="ExplosionParticle" type="Node2D"]
 
-[node name="ExplosionElement" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 40
 lifetime = 0.4

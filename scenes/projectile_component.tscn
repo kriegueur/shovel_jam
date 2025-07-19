@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://crwj7kly1mkx2"]
+[gd_scene load_steps=5 format=3 uid="uid://crwj7kly1mkx2"]
 
 [ext_resource type="Script" uid="uid://dpwj13wdbtpj4" path="res://scripts/projectile_component.gd" id="1_igg0b"]
+[ext_resource type="PackedScene" uid="uid://64yd14ej8blk" path="res://scenes/particles/explosion_particle.tscn" id="2_ym81k"]
+[ext_resource type="PackedScene" uid="uid://dhjx1qsm7ebbw" path="res://scenes/particles/trail_particle.tscn" id="3_22ee1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mtgpy"]
 size = Vector2(10, 10)
 
 [node name="projectile_component" type="Node2D"]
 script = ExtResource("1_igg0b")
+explosion_particle_scene = ExtResource("2_ym81k")
+trail_particle_scene = ExtResource("3_22ee1")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -14,12 +18,3 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_mtgpy")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-amount = 10
-lifetime = 0.5
-randomness = 1.0
-emission_shape = 1
-emission_sphere_radius = 5.6
-direction = Vector2(0, 0)
-spread = 180.0
