@@ -88,7 +88,6 @@ func destroy_projectile(projectile_node: ProjectileComponent):
 func parry_projectile(projectile_area: Area2D):
 	var projectile_component : ProjectileComponent = projectile_area.get_parent()
 	projectile_component.return_to_sender()
-	print("PARRY1")
 
 func start_parry():
 	if not can_parry or state == PlayerState.DASHING:
