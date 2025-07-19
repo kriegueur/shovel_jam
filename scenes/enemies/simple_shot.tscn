@@ -9,10 +9,9 @@
 script = ExtResource("1_w1se1")
 
 [node name="enemy_component" parent="." instance=ExtResource("2_cs6y5")]
-shot_interval = 0.8
 projectile = ExtResource("3_3pc08")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(2.762, 100, 0, 1)
+self_modulate = Color(2.762, 5, 0, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_jw10e")

@@ -42,6 +42,7 @@ func destroy_projectile(hit_position: Vector2):
 		var explosion_instance = explosion_particle_scene.instantiate()
 		parent.add_child(explosion_instance)
 		explosion_instance.global_position = hit_position
+		explosion_instance.z_index = 1
 		var particles = explosion_instance.get_node("CPUParticles2D") as CPUParticles2D
 		if particles:
 			particles.emitting = true

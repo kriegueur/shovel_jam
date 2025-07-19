@@ -9,7 +9,6 @@
 script = ExtResource("1_w5nfa")
 
 [node name="enemy_component" parent="." instance=ExtResource("2_758q0")]
-shot_interval = 0.6
 projectile = ExtResource("3_dgyig")
 bullets_per_shot = 3
 
