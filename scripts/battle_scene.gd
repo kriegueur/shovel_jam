@@ -36,7 +36,8 @@ func _ready() -> void:
 		GameState.player_hp -= damage
 		hp_bar.value = GameState.player_hp
 		if GameState.player_hp <= 0:
-			print("TODO death")
+			GameState.reset()
+			get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
 	)
 	player.connect("projectile_parried", func(projectile, direction_to_sender):
 		print("PARRYYYYYYYYYYYYY")

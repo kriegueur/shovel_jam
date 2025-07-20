@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba3piowtt5ol8"]
+
+[ext_resource type="Script" uid="uid://bvbyf8nkdhgwc" path="res://scripts/title_screen.gd" id="1_fgkus"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1a2ex"]
+bg_color = Color(0.441059, 0.728514, 0.999999, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fgkus"]
+bg_color = Color(0, 0.382296, 0.6449, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sa3yf"]
+bg_color = Color(0.132774, 0.621021, 0.999995, 1)
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fgkus")
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -15.5
+offset_right = 55.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 60
+theme_override_styles/hover = SubResource("StyleBoxFlat_1a2ex")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fgkus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sa3yf")
+text = "GET STARTED"

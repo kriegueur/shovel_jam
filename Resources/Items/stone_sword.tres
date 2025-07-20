@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://id4rnrfb77ov"]
+
+[ext_resource type="Script" uid="uid://fevnv5su24i4" path="res://scripts/item_effect.gd" id="1_j06xu"]
+[ext_resource type="Resource" uid="uid://c4wugvp28n4nm" path="res://Resources/ItemEffects/attack_10.tres" id="2_50lgj"]
+[ext_resource type="Script" uid="uid://i870gsin0pmc" path="res://scripts/Item.gd" id="2_hldaw"]
+[ext_resource type="Texture2D" uid="uid://d0h4m216oai85" path="res://Assets/items.png" id="4_50lgj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vj5v"]
+atlas = ExtResource("4_50lgj")
+region = Rect2(32, 64, 32, 32)
+
+[resource]
+script = ExtResource("2_hldaw")
+texture = SubResource("AtlasTexture_3vj5v")
+name = "Stone sword"
+description = "+20 attack"
+effects = Array[ExtResource("1_j06xu")]([ExtResource("2_50lgj"), ExtResource("2_50lgj")])
+price = 5
+metadata/_custom_type_script = "uid://i870gsin0pmc"

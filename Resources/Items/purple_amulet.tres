@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://bfu3vt5b1df0p"]
+
+[ext_resource type="Script" uid="uid://fevnv5su24i4" path="res://scripts/item_effect.gd" id="1_rrhvm"]
+[ext_resource type="Resource" uid="uid://bkjqptnpjenr" path="res://Resources/ItemEffects/hp_10.tres" id="2_64olh"]
+[ext_resource type="Script" uid="uid://i870gsin0pmc" path="res://scripts/Item.gd" id="2_avlg0"]
+[ext_resource type="Texture2D" uid="uid://d0h4m216oai85" path="res://Assets/items.png" id="4_64olh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_164oj"]
+atlas = ExtResource("4_64olh")
+region = Rect2(32, 32, 32, 32)
+
+[resource]
+script = ExtResource("2_avlg0")
+texture = SubResource("AtlasTexture_164oj")
+name = "Purple amulet"
+description = "+40 max hp"
+effects = Array[ExtResource("1_rrhvm")]([ExtResource("2_64olh"), ExtResource("2_64olh"), ExtResource("2_64olh"), ExtResource("2_64olh")])
+price = 9
+metadata/_custom_type_script = "uid://i870gsin0pmc"

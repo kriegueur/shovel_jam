@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://btl7xrqixw8od"]
+[gd_scene load_steps=3 format=3 uid="uid://btl7xrqixw8od"]
 
 [ext_resource type="Script" uid="uid://boxf6n35st4al" path="res://scripts/item_hoverable.gd" id="1_qko22"]
-[ext_resource type="Resource" uid="uid://db0fl4j10d26k" path="res://Resources/Items/wood_sword.tres" id="2_3i776"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3i776"]
 bg_color = Color(0.977937, 0.977937, 0.977937, 1)
@@ -10,13 +9,20 @@ bg_color = Color(0.977937, 0.977937, 0.977937, 1)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_qko22")
-item_resource = ExtResource("2_3i776")
 
 [node name="IconDisplay" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
-offset_right = 50.0
-offset_bottom = 50.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 visible = false

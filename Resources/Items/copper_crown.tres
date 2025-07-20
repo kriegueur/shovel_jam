@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://c6k2twl33fm1"]
+
+[ext_resource type="Script" uid="uid://fevnv5su24i4" path="res://scripts/item_effect.gd" id="1_a0qer"]
+[ext_resource type="Script" uid="uid://i870gsin0pmc" path="res://scripts/Item.gd" id="2_cunao"]
+[ext_resource type="Resource" uid="uid://bkjqptnpjenr" path="res://Resources/ItemEffects/hp_10.tres" id="2_mvpud"]
+[ext_resource type="Resource" uid="uid://cxwajo4vibbl0" path="res://Resources/ItemEffects/shield_1.tres" id="3_hrnvs"]
+[ext_resource type="Texture2D" uid="uid://d0h4m216oai85" path="res://Assets/items.png" id="5_hrnvs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ja6fh"]
+atlas = ExtResource("5_hrnvs")
+region = Rect2(64, 0, 32, 32)
+
+[resource]
+script = ExtResource("2_cunao")
+texture = SubResource("AtlasTexture_ja6fh")
+name = "Copper crown"
+description = "+20 max hp\\n+10% shield efficiency"
+effects = Array[ExtResource("1_a0qer")]([ExtResource("2_mvpud"), ExtResource("3_hrnvs"), ExtResource("2_mvpud")])
+price = 6
+metadata/_custom_type_script = "uid://i870gsin0pmc"

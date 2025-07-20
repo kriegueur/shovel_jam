@@ -103,3 +103,21 @@ func remove_item(index : int):
 	cash += item.price / 2
 	inventory_changed.emit(false, index)
 	cash_changed.emit(cash)
+
+func reset():
+	current_world = STARTING_WORLD
+	cash = STARTING_CASH
+	damage_addon = 0
+	player_damage = BASE_DAMAGE + damage_addon
+	hp_addon = 0
+	max_hp = BASE_HP + hp_addon
+	player_hp = max_hp
+	speed_multiplier = 1.0
+	dash_cooldown_multiplier = 1.0
+	dash_duration_multiplier = 1.0
+	shield_efficiency_multiplier = 1.0
+	parry_cooldown_multiplier = 1.0
+	mana_addon = 0
+	max_mana = BASE_MANA + mana_addon
+	player_mana = max_mana
+	inventory = []
