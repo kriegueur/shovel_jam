@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cicpdg24q1sx4"]
+
+[ext_resource type="Script" uid="uid://cebqreb43krr7" path="res://scripts/warning_light.gd" id="1_rmgda"]
+
+[node name="WarningLight" type="Node2D"]
+script = ExtResource("1_rmgda")
+warning_color = Color(0.954, 0.407, 0.071, 0.519)
+danger_color = Color(1, 0, 0, 0.558)
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 8.0
+default_color = Color(0.77, 0.385, 0, 0.447059)

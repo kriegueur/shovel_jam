@@ -10,12 +10,19 @@ var state : BattleState = BattleState.ACTION_CHOICE
 const MOB_GROUPS = {
 	"world1" : [
 		["tri_shot"],
+		["bomberman_shot"],
+		["homing_projectile"],
 		["simple_shot", "simple_shot"],
 		["bomberman_shot", "tri_shot"],
-		["bomberman_shot"],
+		["bomberman_shot", "homing_projectile"],
+		["bomberman_shot", "tri_shot"],
+		["homing_projectile", "tri_shot"],
+		["simple_shot", "simple_shot", "simple_shot"],
 	],
 	"boss1" : [
-		["bomberman_shot", "simple_shot", "tri_shot"]
+		["simple_shot", "snow_summoner", "tri_shot"],
+		["snow_summoner", "tri_shot"],
+		["snow_summoner", "homing_projectile"],
 	]
 }
 
@@ -42,9 +49,6 @@ func _ready() -> void:
 		hp_bar.value = GameState.player_hp
 		if GameState.player_hp <= 0:
 			print("TODO death")
-	)
-	player.connect("projectile_parried", func(projectile, direction_to_sender):
-		print("PARRYYYYYYYYYYYYY")
 	)
 	
 	# UI

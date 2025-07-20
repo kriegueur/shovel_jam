@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://d026moqfhbvwm"]
+
+[ext_resource type="Texture2D" uid="uid://ct4vbwak8qdtb" path="res://icon.svg" id="1_2m72w"]
+[ext_resource type="Script" uid="uid://b6bp1v5itam7v" path="res://scripts/enemy.gd" id="1_fxetp"]
+[ext_resource type="PackedScene" uid="uid://bywnmjxsuvyhj" path="res://scenes/enemy_component.tscn" id="2_fxetp"]
+[ext_resource type="PackedScene" uid="uid://7xj8pdb58nfc" path="res://scenes/projectile/homing_projectile.tscn" id="4_fxetp"]
+
+[node name="HomingProjectile" type="Node2D"]
+script = ExtResource("1_fxetp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.661184, 0.618325, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_2m72w")
+
+[node name="enemy_component" parent="." instance=ExtResource("2_fxetp")]
+self_modulate = Color(0, 0.661184, 0.618325, 1)
+projectile = ExtResource("4_fxetp")
+shoot_towards_player = false
+
+[editable path="enemy_component"]

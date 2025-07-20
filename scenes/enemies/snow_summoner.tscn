@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1y4jqygddoij"]
+
+[ext_resource type="Script" uid="uid://b6bp1v5itam7v" path="res://scripts/enemy.gd" id="1_iektq"]
+[ext_resource type="Texture2D" uid="uid://ct4vbwak8qdtb" path="res://icon.svg" id="2_1st7x"]
+[ext_resource type="PackedScene" uid="uid://bywnmjxsuvyhj" path="res://scenes/enemy_component.tscn" id="3_d0l7k"]
+[ext_resource type="PackedScene" uid="uid://cpp0nh30es7ng" path="res://scenes/falling_projectile_spawner.tscn" id="4_1st7x"]
+[ext_resource type="PackedScene" uid="uid://cgacp7ruv23rw" path="res://scenes/projectile/snow_projectile.tscn" id="5_d0l7k"]
+
+[node name="SnowSummoner" type="Node2D"]
+script = ExtResource("1_iektq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(2, 3, 3, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_1st7x")
+
+[node name="enemy_component" parent="." instance=ExtResource("3_d0l7k")]
+use_falling_projectiles = true
+falling_projectile_scene = ExtResource("5_d0l7k")
+max_health = 300.0
+
+[node name="FallingProjectileSpawner" parent="enemy_component" instance=ExtResource("4_1st7x")]
+projectile_scene = ExtResource("5_d0l7k")

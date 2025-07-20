@@ -16,6 +16,10 @@ class_name EnemyComponent
 @export var death_particle : PackedScene
 @export var hit_blinking_duration: float = 0.5
 @export var hit_blink_speed: float = 0.1
+
+@export var use_falling_projectiles: bool = false
+@export var falling_projectile_scene: PackedScene
+
 var is_blinking: bool = false
 var original_color_modulate: Color
 
@@ -40,16 +44,22 @@ func _ready() -> void:
 	if shoot_towards_player:
 		player = get_tree().get_first_node_in_group("player")
 	timer.connect("timeout", func():
-		var angle_to_player : float = 0.0
-		if shoot_towards_player:
-			var dir_to_player = (global_position - player.global_position)
-			angle_to_player = dir_to_player.angle()
-		for i in range(bullets_per_shot):
-			var proj : Projectile = projectile.instantiate()
-			proj.startPos = shot_point
-			proj.dir = SHOT_DIRS[current_shot].rotated(angle_to_player)
-			current_shot = (current_shot+1)%len(SHOT_DIRS)
-			add_child(proj)
+		if use_falling_projectiles:
+			var parent_enemy = get_parent() as Enemy
+			if falling_projectile_scene and parent_enemy:
+				parent_enemy.setup_falling_projectiles(falling_projectile_scene)
+				
+		else: 
+			var angle_to_player : float = 0.0
+			if shoot_towards_player:
+				var dir_to_player = (global_position - player.global_position)
+				angle_to_player = dir_to_player.angle()
+			for i in range(bullets_per_shot):
+				var proj : Projectile = projectile.instantiate()
+				proj.startPos = shot_point
+				proj.dir = SHOT_DIRS[current_shot].rotated(angle_to_player)
+				current_shot = (current_shot+1)%len(SHOT_DIRS)
+				add_child(proj)
 	)
 	current_health = max_health
 	progress_bar.max_value = max_health
