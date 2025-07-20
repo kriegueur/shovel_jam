@@ -32,6 +32,7 @@ func _ready() -> void:
 		get_tree().change_scene_to_file("res://scenes/battle_scene.tscn")
 	)
 	heal_button.text = "Heal : " + str(HEAL_PRICE)
+	heal_button.grab_focus()
 	heal_button.connect("pressed", func():
 		if pay(HEAL_PRICE):
 			GameState.player_hp = GameState.max_hp
@@ -69,6 +70,8 @@ func _ready() -> void:
 		if pay(REROLL_PRICE):
 			get_tree().reload_current_scene()
 	)
+	if GameState.current_battle >= GameState.WAVESPERWORLD:
+		$Warning.show()
 
 func set_inventory_indexes():
 	var i : int = 0

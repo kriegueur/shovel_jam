@@ -13,14 +13,14 @@ const MOB_GROUPS = {
 		["bomberman_shot"],
 		["homing_projectile"],
 		["simple_shot", "simple_shot"],
-		["bomberman_shot", "tri_shot"],
 		["bomberman_shot", "homing_projectile"],
 		["bomberman_shot", "tri_shot"],
 		["homing_projectile", "tri_shot"],
 		["simple_shot", "simple_shot", "simple_shot"],
+		["homing_projectile", "homing_projectile"]
 	],
 	"boss1" : [
-		["simple_shot", "snow_summoner", "tri_shot"],
+		["simple_shot", "snow_summoner", "simple_shot"],
 		["snow_summoner", "tri_shot"],
 		["snow_summoner", "homing_projectile"],
 	]
@@ -51,6 +51,12 @@ func _ready() -> void:
 			GameState.reset()
 			get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
 	)
+	$UI/HBoxContainer/PlayerActionsContainer/Item.connect("pressed", func():
+		$AnimationPlayer.play("comming_soon")
+	)
+	$UI/HBoxContainer/PlayerActionsContainer/Spell.connect("pressed", func():
+		$AnimationPlayer.play("comming_soon")
+	)
 	
 	# UI
 	hp_bar.max_value = GameState.max_hp
@@ -77,7 +83,11 @@ func _input(event: InputEvent) -> void:
 
 func init_enemies():
 	var current_world = GameState.current_world
-	var possible_groups = MOB_GROUPS["world" + str(current_world)]
+	var possible_groups
+	if GameState.current_battle < GameState.WAVESPERWORLD:
+		possible_groups = MOB_GROUPS["world" + str(current_world)]
+	else:
+		possible_groups = MOB_GROUPS["boss" + str(current_world)]
 	var chosen_group = rng.randi_range(0,len(possible_groups) - 1)
 	var positions = []
 	match len(possible_groups[chosen_group]):
@@ -150,5 +160,9 @@ func enemy_died(enemy : Enemy):
 		battle_over()
 
 func battle_over():
-	GameState.cash_reward()
-	get_tree().change_scene_to_file("res://scenes/shop.tscn")
+	if GameState.current_battle < GameState.WAVESPERWORLD:
+		GameState.cash_reward()
+		GameState.current_battle += 1
+		get_tree().change_scene_to_file("res://scenes/shop.tscn")
+	else:
+		get_tree().change_scene_to_file("res://scenes/win_screen.tscn")

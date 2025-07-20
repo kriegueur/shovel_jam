@@ -3,8 +3,11 @@ extends Node
 signal cash_changed
 signal inventory_changed # True if adding to inventory
 
+const WAVESPERWORLD : int = 5
+
 const STARTING_WORLD : int = 1
 var current_world : int = STARTING_WORLD
+var current_battle = 0
 
 const STARTING_CASH : int = 0
 var cash : int = STARTING_CASH
@@ -106,6 +109,7 @@ func remove_item(index : int):
 
 func reset():
 	current_world = STARTING_WORLD
+	current_battle = 0
 	cash = STARTING_CASH
 	damage_addon = 0
 	player_damage = BASE_DAMAGE + damage_addon
