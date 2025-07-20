@@ -70,7 +70,6 @@ layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("2_1i8jf")
 step = 1.0
-show_percentage = false
 
 [node name="Mana" type="ProgressBar" parent="UI/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 30)

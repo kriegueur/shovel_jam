@@ -8,10 +8,10 @@ extends Control
 @onready var description: Label = $PanelContainer/InfoDisplay/Description
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func init() -> void:
 	icon_display.texture = item_resource.texture
 	name_indicator.text = item_resource.name
-	description.text = item_resource.description
+	description.text = item_resource.description.replace('\\n', '\n')
 	info_display.hide()
 	icon_display.connect("mouse_entered", func():
 		info_display.show()

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://vndyexf0ymyj"]
+
+[ext_resource type="Script" uid="uid://fevnv5su24i4" path="res://scripts/item_effect.gd" id="1_oojg2"]
+[ext_resource type="Script" uid="uid://i870gsin0pmc" path="res://scripts/Item.gd" id="2_45el3"]
+[ext_resource type="Resource" uid="uid://dwlc4sdj0beq0" path="res://Resources/ItemEffects/speed_1.tres" id="2_r71sv"]
+[ext_resource type="Resource" uid="uid://bxgcul2uv6u" path="res://Resources/ItemEffects/dashduration.tres" id="3_o1ey8"]
+[ext_resource type="Texture2D" uid="uid://d0h4m216oai85" path="res://Assets/items.png" id="5_o1ey8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6nho"]
+atlas = ExtResource("5_o1ey8")
+region = Rect2(0, 64, 32, 32)
+
+[resource]
+script = ExtResource("2_45el3")
+texture = SubResource("AtlasTexture_b6nho")
+name = "Skateboard"
+description = "+10% speed\\n+10%dash duration"
+effects = Array[ExtResource("1_oojg2")]([ExtResource("2_r71sv"), ExtResource("3_o1ey8")])
+price = 5
+metadata/_custom_type_script = "uid://i870gsin0pmc"

@@ -18,7 +18,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ItemHoverable" parent="HBoxContainer" instance=ExtResource("1_a332m")]
-custom_minimum_size = Vector2(128, 128)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
 [node name="Button" type="Button" parent="HBoxContainer"]

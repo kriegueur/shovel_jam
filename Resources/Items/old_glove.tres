@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://ff8vd0j2njaw"]
+
+[ext_resource type="Script" uid="uid://fevnv5su24i4" path="res://scripts/item_effect.gd" id="1_f2q2v"]
+[ext_resource type="Script" uid="uid://i870gsin0pmc" path="res://scripts/Item.gd" id="2_3tw3c"]
+[ext_resource type="Resource" uid="uid://dwlc4sdj0beq0" path="res://Resources/ItemEffects/speed_1.tres" id="2_utyk3"]
+[ext_resource type="Texture2D" uid="uid://d0h4m216oai85" path="res://Assets/items.png" id="4_utyk3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vwwv"]
+atlas = ExtResource("4_utyk3")
+region = Rect2(0, 32, 32, 32)
+
+[resource]
+script = ExtResource("2_3tw3c")
+texture = SubResource("AtlasTexture_3vwwv")
+name = "Old glove"
+description = "+10% speed"
+effects = Array[ExtResource("1_f2q2v")]([ExtResource("2_utyk3")])
+price = 3
+metadata/_custom_type_script = "uid://i870gsin0pmc"

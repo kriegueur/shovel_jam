@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemEffect" load_steps=2 format=3 uid="uid://bkjqptnpjenr"]
+
+[ext_resource type="Script" uid="uid://fevnv5su24i4" path="res://scripts/item_effect.gd" id="1_fr61m"]
+
+[resource]
+script = ExtResource("1_fr61m")
+type = 1
+value = 10.0
+metadata/_custom_type_script = "uid://fevnv5su24i4"

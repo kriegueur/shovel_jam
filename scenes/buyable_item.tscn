@@ -4,33 +4,29 @@
 [ext_resource type="Script" uid="uid://dqbkhbd7hp4qp" path="res://scripts/buyable_item.gd" id="1_u4hno"]
 
 [node name="BuyableItem" type="Control"]
-custom_minimum_size = Vector2(128, 0)
 layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_top = -32.0
+offset_right = 32.0
 grow_vertical = 0
 script = ExtResource("1_u4hno")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -163.0
-offset_right = 64.0
-grow_horizontal = 2
+offset_top = -67.0
+offset_right = 62.0
 grow_vertical = 0
 
 [node name="ItemHoverable" parent="VBoxContainer" instance=ExtResource("1_0iy8f")]
-custom_minimum_size = Vector2(128, 128)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2

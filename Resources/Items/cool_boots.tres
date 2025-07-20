@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://b85ekesqoneyq"]
+
+[ext_resource type="Script" uid="uid://fevnv5su24i4" path="res://scripts/item_effect.gd" id="1_hcydm"]
+[ext_resource type="Resource" uid="uid://wflnswyqb8s0" path="res://Resources/ItemEffects/dashcooldown_1.tres" id="2_kyup4"]
+[ext_resource type="Script" uid="uid://i870gsin0pmc" path="res://scripts/Item.gd" id="2_wkedx"]
+[ext_resource type="Texture2D" uid="uid://d0h4m216oai85" path="res://Assets/items.png" id="4_kyup4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eahtf"]
+atlas = ExtResource("4_kyup4")
+region = Rect2(32, 0, 32, 32)
+
+[resource]
+script = ExtResource("2_wkedx")
+texture = SubResource("AtlasTexture_eahtf")
+name = "Cool boots"
+description = "-10% dash cooldown"
+effects = Array[ExtResource("1_hcydm")]([ExtResource("2_kyup4")])
+price = 2
+metadata/_custom_type_script = "uid://i870gsin0pmc"
