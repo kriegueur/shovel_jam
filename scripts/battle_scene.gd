@@ -10,7 +10,12 @@ var state : BattleState = BattleState.ACTION_CHOICE
 const MOB_GROUPS = {
 	"world1" : [
 		["tri_shot"],
-		["simple_shot", "simple_shot"]
+		["simple_shot", "simple_shot"],
+		["bomberman_shot", "tri_shot"],
+		["bomberman_shot"],
+	],
+	"boss1" : [
+		["bomberman_shot", "simple_shot", "tri_shot"]
 	]
 }
 
@@ -77,9 +82,9 @@ func init_enemies():
 			positions.append($Spawnpoints/Top.global_position - ($Spawnpoints/Top.global_position-$Spawnpoints/Middle.global_position)/2)
 			positions.append($Spawnpoints/Bottom.global_position - ($Spawnpoints/Bottom.global_position-$Spawnpoints/Middle.global_position)/2)
 		3:
-			positions.append($Spawnpoints/Top)
-			positions.append($Spawnpoints/Middle)
-			positions.append($Spawnpoints/Bottom)
+			positions.append($Spawnpoints/Top.global_position)
+			positions.append($Spawnpoints/Middle.global_position)
+			positions.append($Spawnpoints/Bottom.global_position)
 		_:
 			print("extreme error")
 	var i = 0

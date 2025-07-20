@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckmwvrna0t0xj"]
+
+[ext_resource type="Script" uid="uid://ckw0o28we7pfc" path="res://scripts/projectiles/mortar_projectile.gd" id="1_nl11n"]
+[ext_resource type="Script" uid="uid://dhfmbt103630d" path="res://scripts/projectile.gd" id="1_suy70"]
+[ext_resource type="Texture2D" uid="uid://bb0dajn4gxs6t" path="res://Assets/bomb.png" id="2_suy70"]
+[ext_resource type="PackedScene" uid="uid://crwj7kly1mkx2" path="res://scenes/projectile_component.tscn" id="3_bk8db"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nl11n"]
+radius = 6.66667
+
+[node name="mortar_projectile" type="Node2D"]
+script = ExtResource("1_suy70")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.621656, 0.00347504, 0.932304, 1)
+position = Vector2(-0.5, 1.5)
+scale = Vector2(0.051, 0.05)
+texture = ExtResource("2_suy70")
+offset = Vector2(71.7601, -92.5384)
+
+[node name="projectile_component" parent="." instance=ExtResource("3_bk8db")]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_nl11n")
+gravity = 980.0
+arc_height = 300.0
+steps = 50
+step_time = 0.1
+
+[node name="CollisionShape2D" parent="projectile_component/Area2D" index="0"]
+shape = SubResource("CircleShape2D_nl11n")
+
+[editable path="projectile_component"]

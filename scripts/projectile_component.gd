@@ -9,6 +9,14 @@ class_name ProjectileComponent
 var trail_instance
 
 @onready var parent = get_parent()
+@onready var collision_shape = $Area2D/CollisionShape2D
+
+enum ProjectileState {
+	NORMAL,
+	PARRIED
+}
+
+var status: ProjectileState = ProjectileState.NORMAL
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -27,8 +35,10 @@ func _ready() -> void:
 			particles.one_shot = false
 
 func return_to_sender():
+	status = ProjectileState.PARRIED
 	var sender_position = get_parent().get_parent().global_position
 	parent.dir = (sender_position - global_position).normalized()
+
 
 func destroy_projectile(hit_position: Vector2):
 	parent.cleanse()
