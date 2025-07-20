@@ -32,6 +32,7 @@ func _ready() -> void:
 		get_tree().change_scene_to_file("res://scenes/battle_scene.tscn")
 	)
 	heal_button.text = "Heal : " + str(HEAL_PRICE)
+	heal_button.grab_focus()
 	heal_button.connect("pressed", func():
 		if pay(HEAL_PRICE):
 			GameState.player_hp = GameState.max_hp

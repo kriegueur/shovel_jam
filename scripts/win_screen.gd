@@ -7,6 +7,7 @@ func _ready() -> void:
 		GameState.reset()
 		get_tree().change_scene_to_file("res://scenes/battle_scene.tscn")
 	)
+	$VBoxContainer/Button.grab_focus()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

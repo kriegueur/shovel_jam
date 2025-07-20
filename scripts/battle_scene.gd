@@ -51,6 +51,12 @@ func _ready() -> void:
 			GameState.reset()
 			get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
 	)
+	$UI/HBoxContainer/PlayerActionsContainer/Item.connect("pressed", func():
+		$AnimationPlayer.play("comming_soon")
+	)
+	$UI/HBoxContainer/PlayerActionsContainer/Spell.connect("pressed", func():
+		$AnimationPlayer.play("comming_soon")
+	)
 	
 	# UI
 	hp_bar.max_value = GameState.max_hp
