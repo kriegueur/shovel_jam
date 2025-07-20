@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpp0nh30es7ng"]
+
+[ext_resource type="Script" uid="uid://cokl8byhdjh43" path="res://scripts/snow_behavior.gd" id="1_ynhrk"]
+
+[node name="FallingProjectileSpawner" type="Node2D"]
+script = ExtResource("1_ynhrk")
+
+[node name="Timer" type="Timer" parent="."]
