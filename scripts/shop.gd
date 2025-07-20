@@ -69,6 +69,8 @@ func _ready() -> void:
 		if pay(REROLL_PRICE):
 			get_tree().reload_current_scene()
 	)
+	if GameState.current_battle >= GameState.WAVESPERWORLD:
+		$Warning.show()
 
 func set_inventory_indexes():
 	var i : int = 0
